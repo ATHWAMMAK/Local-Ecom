@@ -61,7 +61,15 @@
       "stock": 6
     }
   ],
-  "users": [],
+  "users": [
+    { 
+      "id":"1",
+      "name": "Demo Customer",
+      "email": "demo@example.test",
+      "phone": "0700000000",
+      "addresses": []
+    }
+  ],
   "orders": [],
   "reviews": []
 }

@@ -68,6 +68,22 @@ export default function Account() {
     {loading ? 'Loading…' : 'Find account'}
   </button>
 </form>
+{notice && (
+  <p role="status" className="mt-4 rounded-md bg-white p-4 text-brand-charcoal">
+    {notice}
+  </p>
+)}
+
+{user && (
+  <div className="mt-6 rounded-md bg-white p-5 text-brand-charcoal">
+    <h2 className="text-xl font-semibold text-brand-black">
+      Account found
+    </h2>
+    <p className="mt-3">Name: {name || 'Not provided'}</p>
+    <p className="mt-1">Email: {user.email}</p>
+    <p className="mt-1">Phone: {phone || 'Not provided'}</p>
+  </div>
+)}
 </section>
 
    )
