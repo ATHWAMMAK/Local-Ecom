@@ -33,6 +33,28 @@ export default function Account() {
   }
  }
 
+ async function saveProfile(event) {
+  event.preventDefault()
+  if(!user) return
+
+  setLoading(true)
+  setNotice('')
+
+  try {
+    const updatedUser = await updateUser(user.id, {
+      name: name.trim(),
+      phone: phone.trim(),
+    })
+    setUser(updatedUser)
+    setNotice('Demo profile saved')
+     } catch {
+      setNotice('Could not save the profile. Check that the demo API is running and try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+
  return (
       <section className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6">
         <h1 className="text-3xl font-semibold text-brand-black">
@@ -79,9 +101,53 @@ export default function Account() {
     <h2 className="text-xl font-semibold text-brand-black">
       Account found
     </h2>
-    <p className="mt-3">Name: {name || 'Not provided'}</p>
-    <p className="mt-1">Email: {user.email}</p>
-    <p className="mt-1">Phone: {phone || 'Not provided'}</p>
+    <form onSubmit={saveProfile} className="mt-4 space-y-4">
+      <div>
+        <label htmlFor="account-name" className="mb-1 block">
+          Name
+        </label>
+        <input
+          id="account-name"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          required
+          className="min-h-11 w-full rounded-md border border-brand-charcoal/25 px-3"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="account-email-display" className="mb-1 block">
+          Email
+        </label>
+        <input
+          id="account-email-display"
+          value={user.email}
+          readOnly
+          className="min-h-11 w-full rounded-md border border-brand-charcoal/15 bg-brand-ivory px-3"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="account-phone" className="mb-1 block">
+          Phone
+        </label>
+        <input
+          id="account-phone"
+          type="tel"
+          value={phone}
+          onChange={(event) => setPhone(event.target.value)}
+          className="min-h-11 w-full rounded-md border border-brand-charcoal/25 px-3"
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="min-h-11 rounded-md bg-brand-black px-5 font-medium text-white disabled:opacity-60"
+      >
+        {loading ? 'Saving…' : 'Save profile'}
+      </button>
+    </form>
   </div>
 )}
 </section>
