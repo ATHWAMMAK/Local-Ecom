@@ -49,6 +49,21 @@ function handleChange(event) {
     className="min-h-11 w-full rounded-md border border-brand-charcoal/25 bg-white px-3"
   />
 </div>
+  <div>
+  <label htmlFor="checkout-phone" className="mb-1 block">
+    Phone
+  </label>
+  <input
+    id="checkout-phone"
+    name="phone"
+    type="tel"
+    autoComplete="tel"
+    value={form.phone}
+    onChange={handleChange}
+    required
+    className="min-h-11 w-full rounded-md border border-brand-charcoal/25 bg-white px-3"
+  />
+</div>
     </form>
   </section>
 )
