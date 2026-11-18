@@ -1,5 +1,4 @@
-import { useState,} from 'react'
-import { link } from 'react-router-dom';
+import { useState } from 'react'
 import { getUserByEmail, updateUser } from '../services/api';
 
 export default function Account() {
@@ -17,7 +16,7 @@ export default function Account() {
   setUser(null)
 
   try {
-    const found = await getUserByEmail(email.trim ())
+    const found = await getUserByEmail(email.trim())
 
     if (!found) {
       setNotice('No demo account was found for that email.')
@@ -33,3 +32,43 @@ export default function Account() {
     setLoading(false)
   }
  }
+
+ return (
+      <section className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6">
+        <h1 className="text-3xl font-semibold text-brand-black">
+          My Account
+        </h1>
+      
+
+      <p className="mt-3 text-brand-charcoal">
+         Enter the email for your demo account to look up your profile.
+      </p>
+
+      <form onSubmit={findAccount} className="mt-8 flex flex-col gap-3 sm:flex-row">
+  <label className="sr-only" htmlFor="account-email">
+    Account email
+  </label>
+
+
+  <input
+    id="account-email"
+    type="email"
+    required
+    value={email}
+    onChange={(event) => setEmail(event.target.value)}
+    placeholder="Email on your demo account"
+    className="min-h-12 flex-1 rounded-md border border-brand-charcoal/25 bg-white px-4"
+  />
+
+  <button
+    type="submit"
+    disabled={loading}
+    className="min-h-12 rounded-md bg-brand-black px-6 font-medium text-white disabled:opacity-60"
+  >
+    {loading ? 'Loading…' : 'Find account'}
+  </button>
+</form>
+</section>
+
+   )
+}
