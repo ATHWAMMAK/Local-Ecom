@@ -45,6 +45,9 @@ export const getUsers = () => request('/users')
 
 export const getUser = (id) => request(`/users/${id}`)
 
+export const getUserByEmail = (email) =>
+  request(`/users?email=${encodeURIComponent(email)}`).then((users) => users[0] ?? null)
+
 export const createUser = (user) =>
   request('/users', {
     method: 'POST',
@@ -64,6 +67,9 @@ export const deleteUser = (id) =>
 
 // ORDERS
 export const getOrders = () => request('/orders')
+
+export const getOrdersByUserId = (userId) =>
+  request(`/orders?userId=${encodeURIComponent(userId)}&_sort=createdAt&_order=desc`)
 
 export const getOrder = (id) => request(`/orders/${id}`)
 
