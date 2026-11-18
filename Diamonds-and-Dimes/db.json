@@ -62,9 +62,9 @@
     }
   ],
   "users": [
-    { 
-      "id":"1",
-      "name": "Demo Customer",
+    {
+      "id": "1",
+      "name": "demo@example.test",
       "email": "demo@example.test",
       "phone": "0700000000",
       "addresses": []
