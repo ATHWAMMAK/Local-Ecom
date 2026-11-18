@@ -27,7 +27,22 @@ export default function Checkout() {
     event.preventDefault()
   }
 
- 
+  // Prevent checkout when the cart is empty
+  if (cart.length === 0) {
+    return (
+      <section className="mx-auto max-w-3xl px-4 py-12">
+        <h1 className="text-3xl font-semibold">Your cart is empty</h1>
+        <p className="mt-3">Add some products before checking out.</p>
+
+        <Link
+          to="/shop"
+          className="inline-block mt-6 rounded-md bg-black px-6 py-3 text-white"
+        >
+          Continue Shopping
+        </Link>
+      </section>
+    )
+  }
 
   return (
     <section className="mx-auto w-full max-w-3xl px-4 py-12">
