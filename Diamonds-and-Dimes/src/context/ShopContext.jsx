@@ -1,103 +1,136 @@
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState
+} from "react";
 
-// Create a shared context for shopping features
-const ShopContext = createContext()
+const ShopContext = createContext(null);
+
+// Safely load saved data from localStorage.
+function readStorage(key) {
+  try {
+    const savedData = localStorage.getItem(key);
+    const parsedData = savedData ? JSON.parse(savedData) : [];
+
+    return Array.isArray(parsedData) ? parsedData : [];
+  } catch (error) {
+    console.error(`Could not load ${key}:`, error);
+    return [];
+  }
+}
 
 export function ShopProvider({ children }) {
-  // Restore saved data when the app starts
-  const [cart, setCart] = useState(() => {
-    return JSON.parse(localStorage.getItem('cart')) || []
-  })
+  const [cart, setCart] = useState(() => readStorage("cart"));
+  const [wishlist, setWishlist] = useState(() =>
+    readStorage("wishlist")
+  );
 
-  const [wishlist, setWishlist] = useState(() => {
-    return JSON.parse(localStorage.getItem('wishlist')) || []
-  })
-
-  // Save changes to localStorage
+  // Keep localStorage synchronized with state.
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
-  }, [cart])
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } catch (error) {
+      console.error("Could not save cart:", error);
+    }
+  }, [cart]);
 
   useEffect(() => {
-    localStorage.setItem('wishlist', JSON.stringify(wishlist))
-  }, [wishlist])
+    try {
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    } catch (error) {
+      console.error("Could not save wishlist:", error);
+    }
+  }, [wishlist]);
 
-  // Add a product to the cart
+  // Add a product to the cart.
   function addToCart(product) {
     setCart((currentCart) => {
       const existingProduct = currentCart.find(
-        (item) => item.id === product.id
-      )
+        (item) => String(item.id) === String(product.id)
+      );
 
       if (existingProduct) {
         return currentCart.map((item) =>
-          item.id === product.id
+          String(item.id) === String(product.id)
             ? { ...item, quantity: item.quantity + 1 }
             : item
-        )
+        );
       }
 
-      return [...currentCart, { ...product, quantity: 1 }]
-    })
+      return [...currentCart, { ...product, quantity: 1 }];
+    });
   }
 
-  // Remove a product from the cart
+  // Remove a product from the cart.
   function removeFromCart(productId) {
     setCart((currentCart) =>
-      currentCart.filter((item) => item.id !== productId)
-    )
+      currentCart.filter(
+        (item) => String(item.id) !== String(productId)
+      )
+    );
   }
 
-  // Change the quantity of a cart item
+  // Update product quantity.
   function updateQuantity(productId, quantity) {
-    if (quantity < 1) return
+    const newQuantity = Number(quantity);
+
+    if (!Number.isInteger(newQuantity) || newQuantity < 1) return;
 
     setCart((currentCart) =>
       currentCart.map((item) =>
-        item.id === productId ? { ...item, quantity } : item
+        String(item.id) === String(productId)
+          ? { ...item, quantity: newQuantity }
+          : item
       )
-    )
+    );
   }
 
-  // Empty the cart
+  // Clear the entire cart.
   function clearCart() {
-    setCart([])
+    setCart([]);
   }
 
-  // Add or remove products from the wishlist
+  // Add a product to the wishlist.
   function addToWishlist(product) {
     setWishlist((currentWishlist) => {
       const alreadySaved = currentWishlist.some(
-        (item) => item.id === product.id
-      )
+        (item) => String(item.id) === String(product.id)
+      );
 
-      if (alreadySaved) return currentWishlist
+      if (alreadySaved) return currentWishlist;
 
-      return [...currentWishlist, product]
-    })
+      return [...currentWishlist, product];
+    });
   }
 
+  // Remove a product from the wishlist.
   function removeFromWishlist(productId) {
     setWishlist((currentWishlist) =>
-      currentWishlist.filter((item) => item.id !== productId)
-    )
+      currentWishlist.filter(
+        (item) => String(item.id) !== String(productId)
+      )
+    );
   }
 
   function isInWishlist(productId) {
-    return wishlist.some((item) => item.id === productId)
+    return wishlist.some(
+      (item) => String(item.id) === String(productId)
+    );
   }
 
-  // Calculate cart information
+  // Calculate cart information.
   const cartCount = cart.reduce(
-    (total, item) => total + item.quantity,
+    (total, item) => total + Number(item.quantity || 0),
     0
-  )
+  );
 
   const cartTotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) =>
+      total + Number(item.price || 0) * Number(item.quantity || 0),
     0
-  )
+  );
 
   return (
     <ShopContext.Provider
@@ -117,10 +150,18 @@ export function ShopProvider({ children }) {
     >
       {children}
     </ShopContext.Provider>
-  )
+  );
 }
 
-// Custom hook for accessing shopping state
+// Custom hook for accessing shared shopping state.
 export function useShop() {
-  return useContext(ShopContext)
+  const context = useContext(ShopContext);
+
+  if (context === null) {
+    throw new Error(
+      "useShop must be used inside a ShopProvider. Wrap your application with ShopProvider."
+    );
+  }
+
+  return context;
 }
