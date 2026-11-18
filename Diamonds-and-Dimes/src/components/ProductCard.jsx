@@ -1,8 +1,9 @@
+
 import { Link } from 'react-router-dom'
 
 export default function ProductCard({ product }) {
   return (
-    <article className="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <article className="group overflow-hidden rounded-xl border border-brand-aqua/30 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
       <Link
         to={`/products/${product.id}`}
         className="block overflow-hidden bg-brand-ivory"
@@ -15,12 +16,12 @@ export default function ProductCard({ product }) {
       </Link>
 
       <div className="p-5">
-        <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-brand-gold">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-brand-deep-aqua">
           {product.category}
         </p>
 
         <Link to={`/products/${product.id}`}>
-          <h2 className="mb-2 text-lg font-semibold text-brand-black transition hover:text-brand-gold">
+          <h2 className="mb-2 text-lg font-semibold text-brand-black transition hover:text-brand-aqua">
             {product.name}
           </h2>
         </Link>
@@ -30,7 +31,7 @@ export default function ProductCard({ product }) {
         </p>
 
         <div className="mb-4 flex items-center justify-between">
-          <span className="text-lg font-bold text-brand-black">
+          <span className="text-lg font-bold text-brand-gold">
             KES {Number(product.price).toLocaleString('en-KE')}
           </span>
 
@@ -39,9 +40,11 @@ export default function ProductCard({ product }) {
           </span>
         </div>
 
-        <p className={`mb-4 text-xs font-medium ${
-          product.stock > 0 ? 'text-green-700' : 'text-red-600'
-        }`}>
+        <p
+          className={`mb-4 text-xs font-medium ${
+            product.stock > 0 ? 'text-green-700' : 'text-red-600'
+          }`}
+        >
           {product.stock > 0
             ? `${product.stock} available`
             : 'Out of stock'}
@@ -49,7 +52,7 @@ export default function ProductCard({ product }) {
 
         <Link
           to={`/products/${product.id}`}
-          className="block rounded-lg border border-brand-gold bg-brand-black px-4 py-3 text-center text-sm font-semibold text-brand-gold transition hover:bg-brand-gold hover:text-brand-black"
+          className="block rounded-lg border border-brand-gold bg-brand-black px-4 py-3 text-center text-sm font-semibold text-brand-aqua transition hover:bg-brand-aqua hover:text-brand-black"
         >
           View Details
         </Link>

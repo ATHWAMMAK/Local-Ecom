@@ -8,7 +8,7 @@ export default function SearchBar({ searchTerm, onSearch }) {
         Search Products
       </label>
 
-      <div className="flex overflow-hidden rounded-lg border border-gray-300 bg-white focus-within:border-brand-gold focus-within:ring-2 focus-within:ring-brand-gold/30">
+      <div className="flex overflow-hidden rounded-lg border border-brand-aqua/40 bg-white focus-within:border-brand-aqua focus-within:ring-2 focus-within:ring-brand-aqua/30">
         <input
           id="product-search"
           type="search"
@@ -22,7 +22,7 @@ export default function SearchBar({ searchTerm, onSearch }) {
           <button
             type="button"
             onClick={() => onSearch('')}
-            className="px-4 text-sm font-semibold text-brand-gold transition hover:bg-brand-black hover:text-white"
+            className="px-4 text-sm font-semibold text-brand-deep-aqua transition hover:bg-brand-black hover:text-brand-aqua"
             aria-label="Clear search"
           >
             Clear
