@@ -22,7 +22,10 @@ export default function Checkout() {
     }))
   }
 
- 
+  // Prevent submission until order processing is connected
+  function handleSubmit(event) {
+    event.preventDefault()
+  }
 
  
 
