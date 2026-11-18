@@ -70,6 +70,15 @@
       "addresses": []
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "id": "101",
+      "userId": "1",
+      "items": [],
+      "total": 1250,
+      "status": "processing",
+      "createdAt": "2026-11-18T10:00:00.000Z"
+    }
+  ],
   "reviews": []
 }
