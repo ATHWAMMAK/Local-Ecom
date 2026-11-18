@@ -1,107 +1,88 @@
 import { Link } from 'react-router-dom'
+import ProductCard from '../components/ProductCard'
+import { useStore } from '../context/StoreContext'
 
 export default function Home() {
+  const store = useStore()
+  const electronics = store.products.filter(
+    (product) => product.category.toLowerCase() === 'electronics',
+  )
+  const featuredProducts = electronics.slice(0, 3)
+
   return (
-    <>
-      <header>
-        <Link to="/">Diamonds and Dimes</Link>
-        <nav aria-label="Main navigation">
-          <a href="#home">Home</a>{' '}
-          <a href="#shop">Shop</a>{' '}
-          <a href="#product-details">Product Details</a>{' '}
-          <a href="#cart">Cart</a>{' '}
-          <a href="#checkout">Checkout</a>{' '}
-          <a href="#wishlist">Wishlist</a>{' '}
-          <a href="#account">Account</a>{' '}
-          <a href="#Order-Details">Order Details</a>{' '}
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+    <div className="space-y-12">
+      <section className="rounded-lg bg-brand-champagne px-6 py-12 sm:px-10">
+        <p className="text-sm font-semibold uppercase text-brand-charcoal/70">
+          Tech for everyday life
+        </p>
+        <h1 className="mt-3 max-w-2xl text-4xl font-bold text-brand-black">
+          The right tech. The right price.
+        </h1>
+        <p className="mt-4 max-w-2xl leading-7">
+          Shop electronics that make work, play, and daily life a little easier.
+        </p>
+        <Link
+          className="mt-6 inline-block rounded bg-brand-black px-5 py-3 font-semibold text-brand-ivory hover:bg-brand-charcoal"
+          to="/shop"
+        >
+          Explore the shop
+        </Link>
+      </section>
 
-      <main>
-        <section id="home">
-          <h1>Everyday technology, made easy</h1>
-          <p>
-            Find electronics for work, entertainment, and everything in between.
-            Shop useful tech at prices that make sense.
-          </p>
-          <Link to="/shop">Browse the shop</Link>
-        </section>
+      <section>
+        <p className="text-sm font-semibold uppercase text-brand-charcoal/60">
+          A good place to start
+        </p>
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-2xl font-bold">Featured electronics</h2>
+          <Link className="font-semibold underline decoration-brand-gold decoration-2 underline-offset-4" to="/shop">
+            View all products
+          </Link>
+        </div>
 
-        <section id="shop">
-          <h2>Shop Our Collection</h2>
-          <p>Explore electronics for work, entertainment, and everyday use.</p>
-          <h3>Explore electronics</h3>
-          <ul>
-            <li>Headphones and audio</li>
-            <li>Computers and accessories</li>
-            <li>Phones and chargers</li>
-            <li>Home technology</li>
-          </ul>
-        </section>
-
-        <section id="product-details">
-          <h2>Product Details</h2>
-          <article>
-            <img
-              src="https://placehold.co/600x600?text=Wireless+Headphones"
-              alt="Wireless headphones"
-              width="200"
+        {store.isLoading && <p>Loading products...</p>}
+        {store.productsError && <p role="alert">{store.productsError}</p>}
+        {!store.isLoading && !store.productsError && featuredProducts.length === 0 && (
+          <p>No electronics are available right now.</p>
+        )}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              isWishlisted={store.wishlist.includes(product.id)}
+              onAddToCart={store.addToCart}
+              onToggleWishlist={store.toggleWishlist}
             />
-            <h3>Wireless Headphones</h3>
-            <p>
-              Enjoy clear sound, comfortable ear cushions, and long battery life.
-            </p>
-            <p>Price: KSh 3,500</p>
-            <Link to="/products/1">View product</Link>
-          </article>
-        </section>
+          ))}
+        </div>
+      </section>
 
-        <section id="cart">
-          <h2>Shopping Cart</h2>
-          <p>Review the products you plan to purchase.</p>
-          <Link to="/cart">Open your cart</Link>
-        </section>
-
-        <section id="checkout">
-          <h2>Checkout</h2>
-          <p>Continue to checkout when you are ready to place your order.</p>
-          <Link to="/checkout">Go to checkout</Link>
-        </section>
-
-        <section id="wishlist">
-          <h2>My Wishlist</h2>
-          <p>Keep track of products you would like to buy.</p>
-          <Link to="/wishlist">Open your wishlist</Link>
-        </section>
-
-        <section id="account">
-          <h2>My Account</h2>
-          <p>Visit your account page.</p>
-          <Link to="/account">Open your account</Link>
-        </section>
-
-        <section id="order-tracking">
-          <h2>Order Tracking</h2>
-          <p>View the details of an order from its order page.</p>
-        </section>
-
-        <section id="contact">
-          <h2>Contact Us</h2>
-          <p>Have a question? Visit our contact page for support.</p>
-          <Link to="/contact">Open contact page</Link>
-        </section>
-      </main>
-
-      <footer>
-        <p>Diamonds and Dimes: electronics for everyday life.</p>
-        <nav aria-label="Footer navigation">
-          <Link to="/shop">Shop</Link>{' '}
-          <Link to="/account">My account</Link>{' '}
-          <Link to="/contact">Contact us</Link>
-        </nav>
-        <p>Copyright © Diamonds and Dimes</p>
-      </footer>
-    </>
+      <section className="grid gap-6 border-y border-brand-champagne py-8 sm:grid-cols-3">
+        <div>
+          <h2 className="font-bold">Practical tech</h2>
+          <p className="mt-2 text-sm leading-6 text-brand-charcoal/70">
+            Useful electronics, selected for everyday needs.
+          </p>
+        </div>
+        <div>
+          <h2 className="font-bold">Clear choices</h2>
+          <p className="mt-2 text-sm leading-6 text-brand-charcoal/70">
+            Product details and prices are easy to compare.
+          </p>
+        </div>
+        <div>
+          <h2 className="font-bold">Need a hand?</h2>
+          <p className="mt-2 text-sm leading-6 text-brand-charcoal/70">
+            <Link
+              className="underline decoration-brand-gold decoration-2 underline-offset-4"
+              to="/contact"
+            >
+              Get in touch with our team.
+            </Link>
+          </p>
+        </div>
+      </section>
+    </div>
   )
 }
