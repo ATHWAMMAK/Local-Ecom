@@ -16,7 +16,7 @@ export default function CategoryFilter({
         id="category-filter"
         value={selectedCategory}
         onChange={(event) => onCategoryChange(event.target.value)}
-        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/30"
+        className="w-full rounded-lg border border-brand-aqua/40 bg-white px-4 py-3 text-sm outline-none focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/30"
       >
         <option value="all">All Categories</option>
 

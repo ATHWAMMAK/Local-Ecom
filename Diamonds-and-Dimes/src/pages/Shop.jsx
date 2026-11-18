@@ -87,7 +87,7 @@ export default function Shop() {
     <section className="min-h-screen bg-brand-ivory">
       {/* Shop heading */}
       <div className="bg-brand-black px-6 py-16 text-center sm:py-20">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-gold">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-aqua">
           Diamonds and Dimes
         </p>
 
@@ -103,7 +103,7 @@ export default function Shop() {
 
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         {/* Search and filters */}
-        <div className="mb-8 grid grid-cols-1 gap-5 rounded-xl border border-gray-200 bg-white p-5 shadow-sm md:grid-cols-3">
+        <div className="mb-8 grid grid-cols-1 gap-5 rounded-xl border border-brand-aqua/30 bg-white p-5 shadow-sm md:grid-cols-3">
           <SearchBar
             searchTerm={searchTerm}
             onSearch={setSearchTerm}
@@ -127,7 +127,7 @@ export default function Shop() {
               id="sort-products"
               value={sortOption}
               onChange={(event) => setSortOption(event.target.value)}
-              className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/30"
+              className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-brand-aqua focus:ring-2 focus:ring-brand-aqua/30"
             >
               <option value="default">Featured</option>
               <option value="price-low">Price: Low to High</option>
@@ -150,7 +150,7 @@ export default function Shop() {
             <button
               type="button"
               onClick={clearFilters}
-              className="text-sm font-semibold text-brand-gold underline underline-offset-4 hover:text-brand-black"
+              className="text-sm font-semibold text-brand-deep-aqua underline underline-offset-4 hover:text-brand-black"
             >
               Clear all filters
             </button>
@@ -160,7 +160,7 @@ export default function Shop() {
         {/* Loading state */}
         {loading && (
           <div className="py-20 text-center" role="status">
-            <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-gray-200 border-t-brand-gold" />
+            <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-gray-200 border-t-brand-aqua" />
             <p className="mt-4 text-sm text-gray-600">
               Loading our collection...
             </p>
@@ -191,7 +191,7 @@ export default function Shop() {
 
         {/* Empty state */}
         {!loading && !error && filteredProducts.length === 0 && (
-          <div className="rounded-xl border border-gray-200 bg-white px-6 py-16 text-center">
+          <div className="rounded-xl border border-brand-aqua/30 bg-white px-6 py-16 text-center">
             <h2 className="text-xl font-semibold text-brand-black">
               No products found
             </h2>
@@ -203,7 +203,7 @@ export default function Shop() {
             <button
               type="button"
               onClick={clearFilters}
-              className="mt-6 rounded-lg bg-brand-black px-6 py-3 text-sm font-semibold text-brand-gold transition hover:bg-brand-gold hover:text-brand-black"
+              className="mt-6 rounded-lg bg-brand-aqua px-6 py-3 text-sm font-semibold text-brand-black transition hover:bg-brand-deep-aqua hover:text-white"
             >
               Reset Filters
             </button>
