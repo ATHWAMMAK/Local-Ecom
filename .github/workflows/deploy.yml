@@ -45,6 +45,8 @@ jobs:
 
       - name: Build application
         working-directory: Diamonds-and-Dimes
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
         run: npm run build
 
       - name: Add GitHub Pages route fallback
