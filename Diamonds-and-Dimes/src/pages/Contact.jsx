@@ -1,5 +1,3 @@
-import ContactSupport from './ContactSupport'
-
 export default function Contact() {
-  return <ContactSupport />
+  return <h1>Contact Us</h1>
 }
