@@ -12,8 +12,12 @@ async function request(endpoint, options = {}) {
   const data = await response.json().catch(() => null)
 
   if (!response.ok) {
-    throw new Error(data?.message || `Request failed: ${response.status}`)
-  }
+  const error = new Error(
+    data?.message || `Request failed: ${response.status}`
+  )
+  error.status = response.status
+  throw error
+}
 
   return data
 }
@@ -45,6 +49,9 @@ export const getUsers = () => request('/users')
 
 export const getUser = (id) => request(`/users/${id}`)
 
+export const getUserByEmail = (email) =>
+  request(`/users?email=${encodeURIComponent(email)}`).then((users) => users[0] ?? null)
+
 export const createUser = (user) =>
   request('/users', {
     method: 'POST',
@@ -64,6 +71,9 @@ export const deleteUser = (id) =>
 
 // ORDERS
 export const getOrders = () => request('/orders')
+
+export const getOrdersByUserId = (userId) =>
+  request(`/orders?userId=${encodeURIComponent(userId)}&_sort=createdAt&_order=desc`)
 
 export const getOrder = (id) => request(`/orders/${id}`)
 
