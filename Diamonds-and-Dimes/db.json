@@ -6,7 +6,7 @@
       "category": "Electronics",
       "price": 3500,
       "description": "Premium wireless headphones with clear sound, comfortable ear cushions and long battery life.",
-      "image": "https://placehold.co/600x600?text=Wireless+Headphones",
+      "image": "/images/products/1-wireless-headphones.webp",
       "rating": 4.7,
       "stock": 12
     },
@@ -16,7 +16,7 @@
       "category": "Fashion",
       "price": 4800,
       "description": "An elegant everyday handbag with a timeless design and spacious interior.",
-      "image": "https://placehold.co/600x600?text=Leather+Handbag",
+      "image": "/images/products/2-leather-handbag.webp",
       "rating": 4.8,
       "stock": 8
     },
@@ -26,7 +26,7 @@
       "category": "Beauty & Personal Care",
       "price": 2750,
       "description": "A refreshing skincare collection designed for everyday personal care.",
-      "image": "https://placehold.co/600x600?text=Skincare+Set",
+      "image": "/images/products/3-skincare-set.webp",
       "rating": 4.5,
       "stock": 15
     },
@@ -36,7 +36,7 @@
       "category": "Home & Living",
       "price": 3200,
       "description": "A stylish modern table lamp suitable for bedrooms, offices and living spaces.",
-      "image": "https://placehold.co/600x600?text=Table+Lamp",
+      "image": "/images/products/4-table-lamp.webp",
       "rating": 4.6,
       "stock": 10
     },
@@ -46,7 +46,7 @@
       "category": "Sports & Outdoors",
       "price": 950,
       "description": "A reusable water bottle designed for workouts and outdoor activities.",
-      "image": "https://placehold.co/600x600?text=Sports+Bottle",
+      "image": "/images/products/5-sports-bottle.webp",
       "rating": 4.4,
       "stock": 20
     },
@@ -56,9 +56,509 @@
       "category": "Accessories",
       "price": 5200,
       "description": "A sophisticated wristwatch combining everyday functionality with timeless style.",
-      "image": "https://placehold.co/600x600?text=Wristwatch",
+      "image": "/images/products/6-wristwatch.webp",
       "rating": 4.9,
       "stock": 6
+    },
+    {
+      "id": "7",
+      "name": "Smartphone Pro 128GB",
+      "category": "Electronics",
+      "price": 45999,
+      "description": "A powerful smartphone with a vibrant display, excellent cameras and all-day battery life.",
+      "image": "/images/products/7-smartphone-pro.webp",
+      "rating": 4.5,
+      "stock": 26
+    },
+    {
+      "id": "8",
+      "name": "Ultra Slim Laptop",
+      "category": "Electronics",
+      "price": 78999,
+      "description": "A lightweight laptop designed for productivity, entertainment and everyday computing.",
+      "image": "/images/products/8-ultra-slim-laptop.webp",
+      "rating": 4.3,
+      "stock": 29
+    },
+    {
+      "id": "9",
+      "name": "Smart 4K Television",
+      "category": "Electronics",
+      "price": 64999,
+      "description": "A stunning 4K television delivering crisp visuals and immersive entertainment.",
+      "image": "/images/products/9-smart-4k-television.webp",
+      "rating": 4.1,
+      "stock": 6
+    },
+    {
+      "id": "10",
+      "name": "Portable Bluetooth Speaker",
+      "category": "Electronics",
+      "price": 4500,
+      "description": "A compact wireless speaker with rich sound and convenient portability.",
+      "image": "/images/products/10-bluetooth-speaker.webp",
+      "rating": 4.8,
+      "stock": 9
+    },
+    {
+      "id": "11",
+      "name": "Wireless Gaming Mouse",
+      "category": "Electronics",
+      "price": 3200,
+      "description": "An ergonomic wireless gaming mouse with responsive controls and adjustable sensitivity.",
+      "image": "/images/products/11-wireless-gaming-mouse.webp",
+      "rating": 4.6,
+      "stock": 12
+    },
+    {
+      "id": "12",
+      "name": "Digital Camera",
+      "category": "Electronics",
+      "price": 38999,
+      "description": "Capture memorable moments with a versatile digital camera and sharp image quality.",
+      "image": "/images/products/12-digital-camera.webp",
+      "rating": 4.4,
+      "stock": 15
+    },
+    {
+      "id": "13",
+      "name": "Classic Denim Jacket",
+      "category": "Fashion",
+      "price": 4200,
+      "description": "A versatile denim jacket that adds timeless style to casual outfits.",
+      "image": "/images/products/13-denim-jacket.webp",
+      "rating": 4.2,
+      "stock": 18
+    },
+    {
+      "id": "14",
+      "name": "Premium Cotton T-Shirt",
+      "category": "Fashion",
+      "price": 1500,
+      "description": "A soft, breathable cotton T-shirt designed for comfortable everyday wear.",
+      "image": "/images/products/14-cotton-tshirt.webp",
+      "rating": 4.9,
+      "stock": 21
+    },
+    {
+      "id": "15",
+      "name": "Elegant Evening Dress",
+      "category": "Fashion",
+      "price": 6500,
+      "description": "A beautifully tailored evening dress suitable for special occasions.",
+      "image": "/images/products/15-evening-dress.webp",
+      "rating": 4.7,
+      "stock": 24
+    },
+    {
+      "id": "16",
+      "name": "Casual Sneakers",
+      "category": "Fashion",
+      "price": 4800,
+      "description": "Comfortable everyday sneakers combining modern styling and reliable support.",
+      "image": "/images/products/16-casual-sneakers.webp",
+      "rating": 4.5,
+      "stock": 27
+    },
+    {
+      "id": "17",
+      "name": "Leather Formal Shoes",
+      "category": "Fashion",
+      "price": 7200,
+      "description": "Polished formal shoes crafted for smart occasions and professional outfits.",
+      "image": "/images/products/17-leather-shoes.webp",
+      "rating": 4.3,
+      "stock": 30
+    },
+    {
+      "id": "18",
+      "name": "Canvas Travel Backpack",
+      "category": "Fashion",
+      "price": 3800,
+      "description": "A practical backpack with generous storage for commuting and travel.",
+      "image": "/images/products/18-canvas-backpack.webp",
+      "rating": 4.1,
+      "stock": 7
+    },
+    {
+      "id": "19",
+      "name": "Hydrating Facial Cleanser",
+      "category": "Beauty & Personal Care",
+      "price": 1250,
+      "description": "A gentle daily facial cleanser that leaves skin feeling fresh and comfortable.",
+      "image": "/images/products/19-facial-cleanser.webp",
+      "rating": 4.8,
+      "stock": 10
+    },
+    {
+      "id": "20",
+      "name": "Vitamin C Face Serum",
+      "category": "Beauty & Personal Care",
+      "price": 2100,
+      "description": "A lightweight facial serum designed to complement a daily skincare routine.",
+      "image": "/images/products/20-vitamin-c-serum.webp",
+      "rating": 4.6,
+      "stock": 13
+    },
+    {
+      "id": "21",
+      "name": "Luxury Eau de Parfum",
+      "category": "Beauty & Personal Care",
+      "price": 5500,
+      "description": "An elegant fragrance with a distinctive scent for day and evening wear.",
+      "image": "/images/products/21-eau-de-parfum.webp",
+      "rating": 4.4,
+      "stock": 16
+    },
+    {
+      "id": "22",
+      "name": "Professional Makeup Kit",
+      "category": "Beauty & Personal Care",
+      "price": 3900,
+      "description": "A versatile makeup collection for creating a range of everyday looks.",
+      "image": "/images/products/22-makeup-kit.webp",
+      "rating": 4.2,
+      "stock": 19
+    },
+    {
+      "id": "23",
+      "name": "Nourishing Body Lotion",
+      "category": "Beauty & Personal Care",
+      "price": 1450,
+      "description": "A rich moisturizing lotion for soft and comfortable-feeling skin.",
+      "image": "/images/products/23-body-lotion.webp",
+      "rating": 4.9,
+      "stock": 22
+    },
+    {
+      "id": "24",
+      "name": "Hair Styling Dryer",
+      "category": "Beauty & Personal Care",
+      "price": 3600,
+      "description": "A practical hair dryer with adjustable heat settings for everyday styling.",
+      "image": "/images/products/24-hair-dryer.webp",
+      "rating": 4.7,
+      "stock": 25
+    },
+    {
+      "id": "25",
+      "name": "Ceramic Dinnerware Set",
+      "category": "Home & Living",
+      "price": 5800,
+      "description": "A coordinated ceramic dinnerware set for everyday meals and entertaining.",
+      "image": "/images/products/25-dinnerware-set.webp",
+      "rating": 4.5,
+      "stock": 28
+    },
+    {
+      "id": "26",
+      "name": "Decorative Cushion Set",
+      "category": "Home & Living",
+      "price": 2200,
+      "description": "A set of stylish cushions that brings comfort and character to living spaces.",
+      "image": "/images/products/26-cushion-set.webp",
+      "rating": 4.3,
+      "stock": 5
+    },
+    {
+      "id": "27",
+      "name": "Modern Wall Clock",
+      "category": "Home & Living",
+      "price": 1850,
+      "description": "A clean, contemporary wall clock for a stylish home or office.",
+      "image": "/images/products/27-wall-clock.webp",
+      "rating": 4.1,
+      "stock": 8
+    },
+    {
+      "id": "28",
+      "name": "Stainless Steel Cookware Set",
+      "category": "Home & Living",
+      "price": 8900,
+      "description": "A durable cookware collection designed for versatile everyday cooking.",
+      "image": "/images/products/28-cookware-set.webp",
+      "rating": 4.8,
+      "stock": 11
+    },
+    {
+      "id": "29",
+      "name": "Luxury Bed Linen Set",
+      "category": "Home & Living",
+      "price": 6200,
+      "description": "A comfortable bedding set that adds a refined touch to the bedroom.",
+      "image": "/images/products/29-bed-linen.webp",
+      "rating": 4.6,
+      "stock": 14
+    },
+    {
+      "id": "30",
+      "name": "Minimalist Storage Organizer",
+      "category": "Home & Living",
+      "price": 1750,
+      "description": "A practical organizer for keeping household essentials neatly arranged.",
+      "image": "/images/products/30-storage-organizer.webp",
+      "rating": 4.4,
+      "stock": 17
+    },
+    {
+      "id": "31",
+      "name": "Adjustable Dumbbell Set",
+      "category": "Sports & Outdoors",
+      "price": 7500,
+      "description": "A versatile strength-training set for convenient home workouts.",
+      "image": "/images/products/31-dumbbell-set.webp",
+      "rating": 4.2,
+      "stock": 20
+    },
+    {
+      "id": "32",
+      "name": "Professional Yoga Mat",
+      "category": "Sports & Outdoors",
+      "price": 2400,
+      "description": "A supportive exercise mat with a comfortable non-slip surface.",
+      "image": "/images/products/32-yoga-mat.webp",
+      "rating": 4.9,
+      "stock": 23
+    },
+    {
+      "id": "33",
+      "name": "Outdoor Camping Tent",
+      "category": "Sports & Outdoors",
+      "price": 9800,
+      "description": "A practical outdoor tent designed for weekend camping adventures.",
+      "image": "/images/products/33-camping-tent.webp",
+      "rating": 4.7,
+      "stock": 26
+    },
+    {
+      "id": "34",
+      "name": "Football Training Ball",
+      "category": "Sports & Outdoors",
+      "price": 1900,
+      "description": "A durable training football suitable for practice and recreational play.",
+      "image": "/images/products/34-football.webp",
+      "rating": 4.5,
+      "stock": 29
+    },
+    {
+      "id": "35",
+      "name": "Running Sports Shoes",
+      "category": "Sports & Outdoors",
+      "price": 5900,
+      "description": "Lightweight running shoes designed for comfort during active sessions.",
+      "image": "/images/products/35-running-shoes.webp",
+      "rating": 4.3,
+      "stock": 6
+    },
+    {
+      "id": "36",
+      "name": "Insulated Sports Flask",
+      "category": "Sports & Outdoors",
+      "price": 1600,
+      "description": "A reusable insulated flask for keeping drinks at a convenient temperature.",
+      "image": "/images/products/36-sports-flask.webp",
+      "rating": 4.1,
+      "stock": 9
+    },
+    {
+      "id": "37",
+      "name": "Digital Blood Pressure Monitor",
+      "category": "Health & Wellness",
+      "price": 4200,
+      "description": "A home monitoring device with a clear digital display.",
+      "image": "/images/products/37-blood-pressure-monitor.webp",
+      "rating": 4.8,
+      "stock": 12
+    },
+    {
+      "id": "38",
+      "name": "Digital Body Weight Scale",
+      "category": "Health & Wellness",
+      "price": 2800,
+      "description": "A sleek digital scale for tracking body weight at home.",
+      "image": "/images/products/38-body-weight-scale.webp",
+      "rating": 4.6,
+      "stock": 15
+    },
+    {
+      "id": "39",
+      "name": "Fitness Smart Band",
+      "category": "Health & Wellness",
+      "price": 5200,
+      "description": "A wearable activity tracker for monitoring everyday movement and workouts.",
+      "image": "/images/products/39-fitness-smart-band.webp",
+      "rating": 4.4,
+      "stock": 18
+    },
+    {
+      "id": "40",
+      "name": "Foam Muscle Roller",
+      "category": "Health & Wellness",
+      "price": 1800,
+      "description": "A compact foam roller for stretching and post-workout recovery routines.",
+      "image": "/images/products/40-muscle-roller.webp",
+      "rating": 4.2,
+      "stock": 21
+    },
+    {
+      "id": "41",
+      "name": "Aromatherapy Diffuser",
+      "category": "Health & Wellness",
+      "price": 3500,
+      "description": "A stylish diffuser designed to complement a relaxing home environment.",
+      "image": "/images/products/41-aromatherapy-diffuser.webp",
+      "rating": 4.9,
+      "stock": 24
+    },
+    {
+      "id": "42",
+      "name": "Reusable Hot Water Bottle",
+      "category": "Health & Wellness",
+      "price": 950,
+      "description": "A reusable hot water bottle for everyday comfort and warmth.",
+      "image": "/images/products/42-hot-water-bottle.webp",
+      "rating": 4.7,
+      "stock": 27
+    },
+    {
+      "id": "43",
+      "name": "Ergonomic Neck Support Pillow",
+      "category": "Health & Wellness",
+      "price": 2600,
+      "description": "A supportive pillow designed to make resting more comfortable.",
+      "image": "/images/products/43-neck-support-pillow.webp",
+      "rating": 4.5,
+      "stock": 30
+    },
+    {
+      "id": "44",
+      "name": "Polarized Sunglasses",
+      "category": "Accessories",
+      "price": 2800,
+      "description": "Modern polarized sunglasses with a versatile everyday design.",
+      "image": "/images/products/44-sunglasses.webp",
+      "rating": 4.3,
+      "stock": 7
+    },
+    {
+      "id": "45",
+      "name": "Gold-Tone Necklace",
+      "category": "Accessories",
+      "price": 1950,
+      "description": "A delicate gold-tone necklace that complements casual and formal outfits.",
+      "image": "/images/products/45-gold-necklace.webp",
+      "rating": 4.1,
+      "stock": 10
+    },
+    {
+      "id": "46",
+      "name": "Classic Leather Wallet",
+      "category": "Accessories",
+      "price": 2400,
+      "description": "A compact wallet with practical storage and a timeless finish.",
+      "image": "/images/products/46-leather-wallet.webp",
+      "rating": 4.8,
+      "stock": 13
+    },
+    {
+      "id": "47",
+      "name": "Elegant Bracelet Set",
+      "category": "Accessories",
+      "price": 1750,
+      "description": "A coordinated bracelet set for adding a refined finishing touch.",
+      "image": "/images/products/47-bracelet-set.webp",
+      "rating": 4.6,
+      "stock": 16
+    },
+    {
+      "id": "48",
+      "name": "Premium Leather Belt",
+      "category": "Accessories",
+      "price": 2200,
+      "description": "A versatile belt with a classic design for everyday styling.",
+      "image": "/images/products/48-leather-belt.webp",
+      "rating": 4.4,
+      "stock": 19
+    },
+    {
+      "id": "49",
+      "name": "Luxury Watch Box",
+      "category": "Accessories",
+      "price": 3200,
+      "description": "A refined storage box for organizing and protecting wristwatches.",
+      "image": "/images/products/49-watch-box.webp",
+      "rating": 4.2,
+      "stock": 22
+    },
+    {
+      "id": "50",
+      "name": "The Art of Productivity",
+      "category": "Books & Stationery",
+      "price": 1450,
+      "description": "An inspiring guide to building better habits and managing your time.",
+      "image": "/images/products/50-art-of-productivity.webp",
+      "rating": 4.9,
+      "stock": 25
+    },
+    {
+      "id": "51",
+      "name": "Premium Hardcover Notebook",
+      "category": "Books & Stationery",
+      "price": 850,
+      "description": "A durable hardcover notebook for ideas, notes and daily planning.",
+      "image": "/images/products/51-hardcover-notebook.webp",
+      "rating": 4.7,
+      "stock": 28
+    },
+    {
+      "id": "52",
+      "name": "Executive Pen Set",
+      "category": "Books & Stationery",
+      "price": 1850,
+      "description": "An elegant writing set suitable for office use and thoughtful gifting.",
+      "image": "/images/products/52-executive-pen-set.webp",
+      "rating": 4.5,
+      "stock": 5
+    },
+    {
+      "id": "53",
+      "name": "Creative Art Supplies Kit",
+      "category": "Books & Stationery",
+      "price": 2600,
+      "description": "A versatile collection of art supplies for drawing and creative projects.",
+      "image": "/images/products/53-art-supplies.webp",
+      "rating": 4.3,
+      "stock": 8
+    },
+    {
+      "id": "54",
+      "name": "Weekly Planner",
+      "category": "Books & Stationery",
+      "price": 950,
+      "description": "A practical weekly planner for organizing tasks, goals and appointments.",
+      "image": "/images/products/54-weekly-planner.webp",
+      "rating": 4.1,
+      "stock": 11
+    },
+    {
+      "id": "55",
+      "name": "Classic Literature Collection",
+      "category": "Books & Stationery",
+      "price": 3200,
+      "description": "A curated collection of timeless literary works for your bookshelf.",
+      "image": "/images/products/55-literature-collection.webp",
+      "rating": 4.8,
+      "stock": 14
+    },
+    {
+      "id": "56",
+      "name": "Desk Organizer Set",
+      "category": "Books & Stationery",
+      "price": 1650,
+      "description": "A coordinated stationery organizer for a tidy and productive workspace.",
+      "image": "/images/products/56-desk-organizer.webp",
+      "rating": 4.6,
+      "stock": 17
     }
   ],
   "users": [

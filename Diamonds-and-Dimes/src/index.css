@@ -1,35 +1,67 @@
 @import "tailwindcss";
 
 @theme {
-
   --color-brand-black: #0B0B0B;
   --color-brand-aqua: #40E0D0;
   --color-brand-deep-aqua: #008B8B;
   --color-brand-gold: #D4AF37;
-
   --color-brand-champagne: #E8D5A3;
   --color-brand-ivory: #FAF8F3;
   --color-brand-charcoal: #222222;
+
+  --font-display: "BBH Bogle", sans-serif;
+  --font-body: "Montserrat", sans-serif;
+  --font-handwritten: "Playwrite AU SA Guides", cursive;
+  --font-playful: "Shantell Sans", cursive;
+  --font-dramatic: "Exile", cursive;
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", system-ui, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+  color: #222222;
+  background: #FAF8F3;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  position: relative;
+  isolation: isolate;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #FAF8F3;
+  background:
+    radial-gradient(ellipse at 8% 12%, rgba(64, 224, 208, 0.17), transparent 34%),
+    radial-gradient(ellipse at 92% 38%, rgba(0, 139, 139, 0.10), transparent 32%),
+    radial-gradient(ellipse at 48% 90%, rgba(212, 175, 55, 0.08), transparent 38%),
+    #FAF8F3;
   color: #222222;
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.42;
+  background:
+    radial-gradient(ellipse at 15% 30%, rgba(64, 224, 208, 0.15), transparent 40%),
+    radial-gradient(ellipse at 85% 70%, rgba(0, 139, 139, 0.12), transparent 42%);
+  background-size: 180% 180%;
+  animation: water-drift 24s ease-in-out infinite alternate;
 }
 
 button,
@@ -37,4 +69,77 @@ input,
 textarea,
 select {
   font: inherit;
+}
+
+::selection {
+  color: #0B0B0B;
+  background: #40E0D0;
+}
+
+.water-surface {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 78% 18%, rgba(64, 224, 208, 0.38), transparent 35%),
+    radial-gradient(ellipse at 18% 85%, rgba(0, 139, 139, 0.50), transparent 42%),
+    linear-gradient(125deg, #050D10 5%, #082D32 48%, #061416 100%);
+}
+
+.water-surface::before,
+.water-surface::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  width: 150%;
+  height: 90%;
+  left: -25%;
+  border: 1px solid rgba(64, 224, 208, 0.24);
+  border-radius: 43%;
+  filter: blur(1px);
+}
+
+.water-surface::before {
+  top: 48%;
+  background: linear-gradient(110deg, transparent 20%, rgba(64, 224, 208, 0.12), transparent 75%);
+  transform: rotate(-12deg);
+  animation: wave-flow 18s ease-in-out infinite alternate;
+}
+
+.water-surface::after {
+  top: 58%;
+  border-color: rgba(212, 175, 55, 0.17);
+  background: linear-gradient(100deg, transparent 25%, rgba(0, 139, 139, 0.18), transparent 80%);
+  transform: rotate(9deg);
+  animation: wave-flow 24s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes water-drift {
+  from {
+    background-position: 0% 30%;
+  }
+  to {
+    background-position: 100% 70%;
+  }
+}
+
+@keyframes wave-flow {
+  from {
+    transform: translateX(-3%) rotate(-12deg);
+  }
+  to {
+    transform: translateX(3%) rotate(-5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

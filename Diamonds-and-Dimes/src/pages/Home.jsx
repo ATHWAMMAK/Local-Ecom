@@ -33,39 +33,58 @@ export default function Home() {
     }
   }, [])
 
-  const featuredProducts = products.slice(0, 3)
+  const featuredProducts = products.slice(0, 6)
 
   return (
     <div className="space-y-14">
 
       {/* Hero section */}
-      <section className="relative overflow-hidden rounded-3xl bg-brand-black px-6 py-16 text-white sm:px-12 sm:py-24">
-        <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-brand-aqua/20 blur-3xl" />
+      <section className="water-surface relative flex min-h-[480px] items-center rounded-3xl px-6 py-16 text-white shadow-2xl shadow-brand-deep-aqua/20 sm:px-12 sm:py-24">
+        <div className="pointer-events-none absolute -right-20 -top-24 size-80 rounded-full border border-brand-aqua/20 bg-brand-aqua/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-32 right-1/4 size-96 rounded-full bg-brand-deep-aqua/30 blur-3xl" />
 
-        <div className="relative max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-brand-aqua">
+        <div className="relative z-10 max-w-3xl">
+          <p className="font-semibold uppercase tracking-[0.35em] text-brand-aqua">
             Diamonds and Dimes
           </p>
 
-          <h1 className="mt-5 text-4xl font-bold leading-tight sm:text-6xl">
+          <p className="mt-5 font-handwritten text-lg text-brand-champagne">
+            A little luxury. A lot of character.
+          </p>
+
+          <h1 className="mt-4 font-display text-4xl leading-tight tracking-wide sm:text-6xl lg:text-7xl">
             Luxury in Every Choice.
-            <span className="block text-brand-aqua">
+            <span className="mt-2 block text-brand-aqua">
               Quality in Every Purchase.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-gray-300">
+          <p className="mt-6 max-w-2xl text-base leading-8 text-gray-200 sm:text-lg">
             Discover carefully selected products across fashion,
             electronics, beauty, home essentials and more.
             Find quality that fits your lifestyle.
           </p>
 
-          <Link
-            to="/shop"
-            className="mt-8 inline-block rounded-lg bg-brand-aqua px-8 py-4 font-bold text-brand-black transition hover:bg-brand-gold"
-          >
-            Explore Our Collection
-          </Link>
+          <div className="mt-9 flex flex-wrap items-center gap-5">
+            <Link
+              to="/shop"
+              className="inline-flex items-center rounded-full border border-brand-aqua bg-brand-aqua px-8 py-4 font-bold text-brand-black shadow-lg shadow-brand-aqua/20 transition duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-brand-gold"
+            >
+              Explore Our Collection
+              <span className="ml-3 text-xl" aria-hidden="true">→</span>
+            </Link>
+
+            <span className="text-sm font-medium tracking-wide text-brand-champagne">
+              Discover something exceptional.
+            </span>
+          </div>
+        </div>
+
+        <div className="pointer-events-none absolute bottom-8 right-10 hidden text-right lg:block">
+          <span className="block font-display text-6xl text-white/10">D&amp;D</span>
+          <span className="text-xs uppercase tracking-[0.4em] text-brand-aqua/70">
+            Curated living
+          </span>
         </div>
       </section>
 
@@ -77,7 +96,7 @@ export default function Home() {
               Handpicked for you
             </p>
 
-            <h2 className="mt-2 text-3xl font-bold text-brand-black">
+            <h2 className="mt-2 font-display text-3xl text-brand-black sm:text-4xl">
               Featured Products
             </h2>
 
