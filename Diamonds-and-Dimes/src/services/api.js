@@ -131,3 +131,11 @@ export const createReview = (review) =>
     method: 'POST',
     body: JSON.stringify(review),
   })
+
+
+// CONTACT MESSAGES
+export const createContactMessage = (message) =>
+  request('/messages', {
+    method: 'POST',
+    body: JSON.stringify(message),
+  })

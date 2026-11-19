@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createContactMessage } from '../services/api'
 
 const initialForm = { name: '', email: '', orderNumber: '', topic: '', message: '' }
 const topics = ['Order status', 'Shipping & delivery', 'Returns & exchanges', 'Setup & compatibility', 'Warranty & repairs', 'Something else']
@@ -21,6 +22,8 @@ export default function ContactSupport() {
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [submittedName, setSubmittedName] = useState('')
+  const [submissionError, setSubmissionError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   function updateField(event) {
     const { name, value } = event.target
@@ -28,18 +31,38 @@ export default function ContactSupport() {
     setErrors((current) => ({ ...current, [name]: '' }))
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
+
     const nextErrors = validateForm(form)
     setErrors(nextErrors)
+    setSubmissionError('')
+    setSubmittedName('')
 
-    if (Object.keys(nextErrors).length > 0) {
-      setSubmittedName('')
-      return
+    if (Object.keys(nextErrors).length > 0) return
+
+    setIsSubmitting(true)
+
+    try {
+      await createContactMessage({
+        ...form,
+        name: form.name.trim(),
+        email: form.email.trim(),
+        orderNumber: form.orderNumber.trim(),
+        message: form.message.trim(),
+        createdAt: new Date().toISOString(),
+      })
+
+      setSubmittedName(form.name.trim())
+      setForm(initialForm)
+    } catch (error) {
+      setSubmissionError(
+        'We could not send your message. Please try again.'
+      )
+      console.error('Contact form submission failed:', error)
+    } finally {
+      setIsSubmitting(false)
     }
-
-    setSubmittedName(form.name.trim())
-    setForm(initialForm)
   }
 
   const fieldClass = 'mt-1 w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold/20'
@@ -59,7 +82,7 @@ export default function ContactSupport() {
           <form className="mt-4 space-y-4" onSubmit={handleSubmit} noValidate>
             {submittedName && (
               <div className="rounded border border-green-200 bg-green-50 p-3 text-sm text-green-900" role="status" aria-live="polite">
-                <strong>Thanks, {submittedName}.</strong> This demo form is not connected to an inbox yet. Please email us directly.
+                <strong>Thanks, {submittedName}.</strong> Your message has been successfully submitted. Our team can retrieve it from the support system.
               </div>
             )}
 
@@ -75,6 +98,12 @@ export default function ContactSupport() {
                 {errors.email && <p className="mt-1 text-xs text-red-700" id="support-email-error">{errors.email}</p>}
               </div>
             </div>
+
+            {submissionError && (
+              <p className="rounded border border-red-200 bg-red-50 p-3 text-sm text-red-800" role="alert">
+                {submissionError}
+              </p>
+            )}
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
@@ -97,8 +126,8 @@ export default function ContactSupport() {
               {errors.message && <p className="mt-1 text-xs text-red-700" id="support-message-error">{errors.message}</p>}
             </div>
 
-            <button className="rounded bg-brand-black px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2" type="submit">
-              Send message
+            <button className="rounded bg-brand-black px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send message'}
             </button>
           </form>
         </section>
