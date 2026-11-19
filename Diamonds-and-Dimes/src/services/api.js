@@ -23,9 +23,40 @@ async function request(endpoint, options = {}) {
 }
 
 // PRODUCTS
-export const getProducts = () => request('/products')
+// GitHub Pages has no running JSON Server, so production can
+// read the public static catalogue when no backend URL is configured.
+const useStaticCatalogue =
+  import.meta.env.PROD && !import.meta.env.VITE_API_URL
 
-export const getProduct = (id) => request(`/products/${id}`)
+async function getStaticProducts() {
+  const response = await fetch(`${import.meta.env.BASE_URL}products.json`)
+
+  if (!response.ok) {
+    throw new Error('Unable to load the product catalogue.')
+  }
+
+  return response.json()
+}
+
+export const getProducts = () =>
+  useStaticCatalogue ? getStaticProducts() : request('/products')
+
+export const getProduct = async (id) => {
+  if (!useStaticCatalogue) {
+    return request(`/products/${id}`)
+  }
+
+  const products = await getStaticProducts()
+  const product = products.find((item) => String(item.id) === String(id))
+
+  if (!product) {
+    const error = new Error('Product not found.')
+    error.status = 404
+    throw error
+  }
+
+  return product
+}
 
 export const createProduct = (product) =>
   request('/products', {
