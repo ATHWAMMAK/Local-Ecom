@@ -17,7 +17,7 @@ import ContactSupport from './pages/ContactSupport'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Local-Ecom">
       <ShopProvider>
         <Routes>
           <Route element={<StoreLayout />}>
