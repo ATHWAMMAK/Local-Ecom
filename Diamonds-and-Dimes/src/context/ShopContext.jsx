@@ -1,8 +1,9 @@
+
 import {
   createContext,
   useContext,
   useEffect,
-  useState,
+  useState
 } from "react";
 
 const ShopContext = createContext(null);
@@ -43,48 +44,22 @@ export function ShopProvider({ children }) {
     }
   }, [wishlist]);
 
-  // Add a product, supporting an optional quantity.
-  function addToCart(product, quantity = 1) {
-    if (!product || product.id === undefined) return;
-
-    const requestedQuantity = Math.max(
-      1,
-      Math.floor(Number(quantity) || 1)
-    );
-
+  // Add a product to the cart.
+  function addToCart(product) {
     setCart((currentCart) => {
       const existingProduct = currentCart.find(
         (item) => String(item.id) === String(product.id)
       );
 
-      const stock = Number(product.stock);
-      const hasStockLimit =
-        product.stock !== undefined &&
-        product.stock !== null &&
-        Number.isFinite(stock);
-
-      if (hasStockLimit && stock <= 0) return currentCart;
-
-      const currentQuantity = existingProduct
-        ? Number(existingProduct.quantity) || 0
-        : 0;
-
-      const newQuantity = hasStockLimit
-        ? Math.min(currentQuantity + requestedQuantity, stock)
-        : currentQuantity + requestedQuantity;
-
       if (existingProduct) {
         return currentCart.map((item) =>
           String(item.id) === String(product.id)
-            ? { ...item, quantity: newQuantity }
+            ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
 
-      return [
-        ...currentCart,
-        { ...product, quantity: newQuantity },
-      ];
+      return [...currentCart, { ...product, quantity: 1 }];
     });
   }
 
@@ -99,33 +74,17 @@ export function ShopProvider({ children }) {
 
   // Update product quantity.
   function updateQuantity(productId, quantity) {
-    const newQuantity = Math.floor(Number(quantity));
+    const newQuantity = Number(quantity);
 
     if (!Number.isInteger(newQuantity) || newQuantity < 1) return;
 
     setCart((currentCart) =>
-      currentCart.map((item) => {
-        if (String(item.id) !== String(productId)) return item;
-
-        const stock = Number(item.stock);
-        const hasStockLimit =
-          item.stock !== undefined &&
-          item.stock !== null &&
-          Number.isFinite(stock);
-
-        return {
-          ...item,
-          quantity: hasStockLimit
-            ? Math.min(newQuantity, stock)
-            : newQuantity,
-        };
-      })
+      currentCart.map((item) =>
+        String(item.id) === String(productId)
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
     );
-  }
-
-  // Brian's Cart page uses this method name.
-  function updateCartQuantity(productId, quantity) {
-    updateQuantity(productId, quantity);
   }
 
   // Clear the entire cart.
@@ -135,8 +94,6 @@ export function ShopProvider({ children }) {
 
   // Add a product to the wishlist.
   function addToWishlist(product) {
-    if (!product || product.id === undefined) return;
-
     setWishlist((currentWishlist) => {
       const alreadySaved = currentWishlist.some(
         (item) => String(item.id) === String(product.id)
@@ -155,21 +112,6 @@ export function ShopProvider({ children }) {
         (item) => String(item.id) !== String(productId)
       )
     );
-  }
-
-  // Brian's Product Details and Wishlist pages use this method.
-  function toggleWishlist(product) {
-    if (!product || product.id === undefined) return;
-
-    const alreadySaved = wishlist.some(
-      (item) => String(item.id) === String(product.id)
-    );
-
-    if (alreadySaved) {
-      removeFromWishlist(product.id);
-    } else {
-      addToWishlist(product);
-    }
   }
 
   function isInWishlist(productId) {
@@ -198,11 +140,9 @@ export function ShopProvider({ children }) {
         addToCart,
         removeFromCart,
         updateQuantity,
-        updateCartQuantity,
         clearCart,
         addToWishlist,
         removeFromWishlist,
-        toggleWishlist,
         isInWishlist,
         cartCount,
         cartTotal,
@@ -214,7 +154,6 @@ export function ShopProvider({ children }) {
 }
 
 // Custom hook for accessing shared shopping state.
-// eslint-disable-next-line react-refresh/only-export-components
 export function useShop() {
   const context = useContext(ShopContext);
 
