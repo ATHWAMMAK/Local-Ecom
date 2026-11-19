@@ -1,24 +1,26 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ShopProvider } from './context/ShopContext'
+import StoreLayout from './components/StoreLayout'
 
-import { ShopProvider } from './context/ShopContext.jsx';
-
-import Home from './pages/Home';
-import Shop from './pages/Shop';
-import ProductDetails from './pages/ProductDetails';
-import Cart from './pages/Cart.jsx';
-import Checkout from './pages/Checkout';
-import Account from './pages/Account';
-import Wishlist from './pages/Wishlist';
-import OrderDetails from './pages/OrderDetails';
-import Contact from './pages/Contact';
+import Home from './pages/Home'
+import Shop from './pages/Shop'
+import ProductDetails from './pages/ProductDetails'
+import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
+import Account from './pages/Account'
+import Wishlist from './pages/Wishlist'
+import OrderHistory from './pages/OrderHistory'
+import OrderDetails from './pages/OrderDetails'
+import Contact from './pages/Contact'
+import ContactSupport from './pages/ContactSupport'
 
 function App() {
   return (
     <BrowserRouter>
       <ShopProvider>
-        <main className="min-h-screen bg-brand-ivory text-brand-charcoal">
-          <Routes>
+        <Routes>
+          <Route element={<StoreLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/products/:id" element={<ProductDetails />} />
@@ -26,13 +28,17 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/account" element={<Account />} />
             <Route path="/wishlist" element={<Wishlist />} />
+
+            <Route path="/orders" element={<OrderHistory />} />
             <Route path="/orders/:id" element={<OrderDetails />} />
+
             <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
+            <Route path="/support" element={<ContactSupport />} />
+          </Route>
+        </Routes>
       </ShopProvider>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

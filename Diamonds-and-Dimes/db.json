@@ -61,7 +61,46 @@
       "stock": 6
     }
   ],
-  "users": [],
-  "orders": [],
+  "users": [
+    {
+      "id": "1",
+      "name": "demo@example.test",
+      "email": "demo@example.test",
+      "phone": "0700000000",
+      "addresses": []
+    }
+  ],
+  "orders": [
+    {
+      "id": "101",
+      "userId": "1",
+      "items": [],
+      "total": 1250,
+      "status": "processing",
+      "createdAt": "2026-11-18T10:00:00.000Z"
+    },
+    {
+      "userId": "1",
+      "customer": {
+        "name": "Test Customer",
+        "email": "demo@example.test",
+        "phone": "0700000000",
+        "address": "Nairobi, Kenya"
+      },
+      "items": [
+        {
+          "productId": "5",
+          "name": "Sports Training Bottle",
+          "price": 950,
+          "quantity": 2,
+          "image": "https://placehold.co/600x600?text=Sports+Bottle"
+        }
+      ],
+      "total": 1900,
+      "status": "pending",
+      "createdAt": "2026-11-19T15:14:04.813Z",
+      "id": "e6TjmK7"
+    }
+  ],
   "reviews": []
 }
