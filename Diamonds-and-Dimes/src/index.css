@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --color-brand-aqua: #75d7d0;
+  --color-brand-aqua-deep: #167d78;
   --color-brand-black: #0B0B0B;
   --color-brand-gold: #D4AF37;
   --color-brand-champagne: #E8D5A3;
@@ -26,6 +28,10 @@ body {
   min-height: 100vh;
   background-color: #FAF8F3;
   color: #222222;
+}
+
+button {
+  cursor: pointer;
 }
 
 button,

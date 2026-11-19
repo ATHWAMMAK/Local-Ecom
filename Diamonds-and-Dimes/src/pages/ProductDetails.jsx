@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getProduct } from "../services/api";
+import { useShop } from "../context/ShopContext";
 
 const kes = new Intl.NumberFormat("en-KE", {
   style: "currency",
   currency: "KES",
+  currencyDisplay: "code",
   maximumFractionDigits: 2,
 });
 
 export default function ProductDetails() {
   const { id } = useParams();
+  const { addToCart, toggleWishlist, wishlist } = useShop();
 
   // Each result remembers which id it belongs to.
   const [result, setResult] = useState({ id: null, status: "loading", product: null });
@@ -85,6 +88,7 @@ export default function ProductDetails() {
 
   const outOfStock = product.stock <= 0;
   const added = addedId === product.id;
+  const saved = wishlist.some((item) => String(item.id) === String(product.id));
 
   // Turns whatever is in the field into a valid quantity.
   const clampQty = (value) =>
@@ -97,15 +101,13 @@ export default function ProductDetails() {
   const handleAddToCart = () => {
     const quantity = clampQty(qty);
     setQty(String(quantity));
-    window.dispatchEvent(
-      new CustomEvent("cart:add", { detail: { product, quantity } }),
-    );
+    addToCart(product, quantity);
     setAddedId(product.id);
   };
 
   return (
     <main className="mx-auto grid max-w-6xl gap-8 px-6 py-10 md:grid-cols-2 md:gap-12 md:py-16">
-      <div className="overflow-hidden rounded-2xl bg-white">
+      <div className="overflow-hidden rounded-3xl border border-brand-gold/30 bg-brand-aqua/20 p-3">
         <img
           className="aspect-square h-full w-full object-cover"
           src={product.image}
@@ -116,7 +118,7 @@ export default function ProductDetails() {
       </div>
 
       <section className="flex flex-col items-start">
-        <Link className="mb-8 text-sm underline underline-offset-4" to="/shop">
+        <Link className="mb-8 text-sm font-medium text-brand-aqua-deep underline underline-offset-4" to="/shop">
           Back to shop
         </Link>
 
@@ -161,21 +163,17 @@ export default function ProductDetails() {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <button
-            className="rounded-md bg-brand-black px-6 py-3 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-full border border-brand-gold bg-brand-black px-6 py-3 font-semibold text-brand-gold transition hover:bg-brand-charcoal disabled:cursor-not-allowed disabled:opacity-50"
             disabled={outOfStock}
             onClick={handleAddToCart}
           >
             Add to cart
           </button>
           <button
-            className="rounded-md border border-brand-black px-6 py-3 font-medium"
-            onClick={() =>
-              window.dispatchEvent(
-                new CustomEvent("wishlist:toggle", { detail: { product } }),
-              )
-            }
+            className="rounded-full border border-brand-aqua-deep bg-brand-aqua/30 px-6 py-3 font-semibold text-brand-charcoal transition hover:bg-brand-aqua/60"
+            onClick={() => toggleWishlist(product)}
           >
-            Save to wishlist
+            {saved ? "Remove from wishlist" : "Save to wishlist"}
           </button>
         </div>
 
