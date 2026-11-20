@@ -1,3 +1,4 @@
+import { getProductImageUrl } from '../utils/productImage'
 import { Link } from 'react-router-dom'
 import { useShop } from '../context/ShopContext'
 
@@ -9,7 +10,7 @@ export default function Cart() {
 
   return (
     <section className="mx-auto max-w-5xl px-6 py-12 md:py-16">
-      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-aqua-deep">Your selection</p>
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-deep-aqua">Your selection</p>
       <h1 className="mt-2 text-3xl font-semibold text-brand-black md:text-4xl">Shopping cart</h1>
       {cart.length === 0 ? (
         <div className="mt-8 rounded-3xl border border-brand-gold/40 bg-white p-8 text-center">
@@ -21,9 +22,9 @@ export default function Cart() {
           <div className="space-y-4">
             {cart.map((item) => (
               <article key={item.id} className="flex gap-4 rounded-3xl border border-brand-gold/30 bg-white p-4">
-                <img className="h-24 w-24 rounded-2xl bg-brand-aqua/20 object-cover" src={item.image} alt={item.name} />
+                <img className="h-24 w-24 rounded-2xl bg-brand-aqua/20 object-cover" src={getProductImageUrl(item.image)} alt={item.name} />
                 <div className="flex min-w-0 flex-1 flex-col justify-between sm:flex-row sm:items-center">
-                  <div><h2 className="font-semibold">{item.name}</h2><p className="mt-1 text-brand-aqua-deep">{kes.format(Number(item.price))}</p></div>
+                  <div><h2 className="font-semibold">{item.name}</h2><p className="mt-1 text-brand-deep-aqua">{kes.format(Number(item.price))}</p></div>
                   <div className="mt-3 flex items-center gap-3 sm:mt-0">
                     <label className="sr-only" htmlFor={`quantity-${item.id}`}>Quantity for {item.name}</label>
                     <input id={`quantity-${item.id}`} className="w-16 rounded-lg border border-brand-aqua-deep px-2 py-1" type="number" min="1" max={item.stock} value={item.quantity} onChange={(event) => updateCartQuantity(item.id, Math.min(Number(event.target.value) || 1, item.stock))} />

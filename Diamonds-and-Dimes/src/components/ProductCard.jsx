@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useShop } from '../context/ShopContext'
+import { getProductImageUrl } from '../utils/productImage'
 
 export default function ProductCard({ product }) {
   const { addToCart, toggleWishlist, isInWishlist } = useShop()
@@ -8,13 +9,13 @@ export default function ProductCard({ product }) {
   const inStock = Number(product.stock) > 0
 
   return (
-    <article className="group overflow-hidden rounded-xl border border-brand-aqua/30 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <article className="group overflow-hidden rounded-2xl border border-brand-aqua/30 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
       <Link
         to={`/products/${product.id}`}
         className="block overflow-hidden bg-brand-ivory"
       >
         <img
-          src={product.image}
+          src={getProductImageUrl(product.image)}
           alt={product.name}
           className="h-64 w-full object-cover transition duration-500 group-hover:scale-105"
           loading="lazy"
@@ -27,28 +28,28 @@ export default function ProductCard({ product }) {
         </p>
 
         <Link to={`/products/${product.id}`}>
-          <h2 className="mb-2 text-lg font-semibold text-brand-black transition hover:text-brand-aqua">
+          <h2 className="mb-2 text-lg font-semibold text-brand-black transition hover:text-brand-deep-aqua">
             {product.name}
           </h2>
         </Link>
 
-        <p className="mb-3 line-clamp-2 text-sm text-gray-600">
+        <p className="mb-3 line-clamp-2 text-sm leading-6 text-brand-charcoal/70">
           {product.description}
         </p>
 
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-4 flex items-center justify-between gap-3">
           <span className="text-lg font-bold text-brand-gold">
             KES {Number(product.price).toLocaleString('en-KE')}
           </span>
 
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-brand-charcoal/70">
             ★ {product.rating}
           </span>
         </div>
 
         <p
-          className={`mb-4 text-xs font-medium ${
-            inStock ? 'text-green-700' : 'text-red-600'
+          className={`mb-4 text-xs font-semibold ${
+            inStock ? 'text-brand-deep-aqua' : 'text-red-600'
           }`}
         >
           {inStock ? `${product.stock} available` : 'Out of stock'}
@@ -59,7 +60,7 @@ export default function ProductCard({ product }) {
             type="button"
             disabled={!inStock}
             onClick={() => addToCart(product)}
-            className="flex-1 rounded-lg bg-brand-black px-4 py-3 text-sm font-semibold text-brand-aqua transition hover:bg-brand-aqua hover:text-brand-black disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex-1 rounded-xl bg-brand-black px-4 py-3 text-sm font-semibold text-brand-aqua transition hover:bg-brand-deep-aqua hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             {inStock ? 'Add to Cart' : 'Out of Stock'}
           </button>
@@ -68,7 +69,7 @@ export default function ProductCard({ product }) {
             type="button"
             onClick={() => toggleWishlist(product)}
             aria-pressed={saved}
-            className="rounded-lg border border-brand-gold px-4 py-3 text-sm font-semibold text-brand-black transition hover:bg-brand-gold"
+            className="rounded-xl border border-brand-gold px-4 py-3 text-sm font-semibold text-brand-black transition hover:bg-brand-gold"
           >
             {saved ? '♥ Saved' : '♡ Wishlist'}
           </button>
@@ -76,7 +77,7 @@ export default function ProductCard({ product }) {
 
         <Link
           to={`/products/${product.id}`}
-          className="mt-3 block text-center text-sm font-semibold text-brand-deep-aqua underline underline-offset-4 hover:text-brand-black"
+          className="mt-4 block text-center text-sm font-semibold text-brand-deep-aqua underline underline-offset-4 transition hover:text-brand-black"
         >
           View Details
         </Link>
